@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,3 +22,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::resource('permissions', PermissionController::class);
+
+Route::get('permissions/{permissionId}/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
+
+Route::resource('roles', RoleController::class);
+Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy'])->name('roles.destroy');
